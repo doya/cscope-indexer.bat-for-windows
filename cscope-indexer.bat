@@ -8,8 +8,8 @@
 @rem #  This is a Windows version of cscope-indexer.sh.                        #
 @rem #  It just works on Windows without any other external *nix tools such    #
 @rem #  as bash or grep or etc.                                                #
-@rem #  When you're forced to work on Windows and still work with Emacs and    #
-@rem #  cscope, this software might be helpful. Cheers!                        #
+@rem #  When you're forced to work on Windows but still want to work with      #
+@rem #  Emacs and cscope, this software might be helpful. Cheers!              #
 @rem #                                                                         #
 @rem # License                                                                 #
 @rem #  GPL                                                                    #
