@@ -14,12 +14,10 @@
 @rem # License                                                                 #
 @rem #  GPL                                                                    #
 @rem #                                                                         #
-@rem # Known problems                                                          #
-@rem #  - The full path of the source files shouldn't contain multi-byte       #
-@rem #    characters.                                                          #
-@rem #                                                                         #
 @rem # Last modified                                                           #
-@rem #  2012/06/25                                                             #
+@rem #  2012/06/29 - bugfix for the multi-bytes characters limitation.         #
+@rem #               Now you can put your source codes into any directories    #
+@rem #               you want.                                                 #
 @rem #                                                                         #
 @rem ###########################################################################
 
@@ -29,6 +27,7 @@ setlocal
 set LIST_ONLY=0
 set DIR=.
 set LIST_FILE=cscope.files
+set LIST_TMP_FILE=cscope.files.tmp
 set DATABASE_FILE=cscope.out
 set RECURSE=
 set VERBOSE=0
@@ -91,7 +90,9 @@ cd %DIR%
 if "%VERBOSE%" == "0" goto SKIP_STARTMSG
 echo "Creating list of files to index ..."
 :SKIP_STARTMSG
-dir /B %RECURSE% %SEARCH_FILES% > %LIST_FILE%
+dir /B %RECURSE% %SEARCH_FILES% > %LIST_TMP_FILE%
+(for /F "tokens=*" %%A in (%LIST_TMP_FILE%) do @echo "%%A") > %LIST_FILE%
+del %LIST_TMP_FILE%
 if "%VERBOSE%" == "0" goto SKIP_ENDMSG
 echo "Creating list of files to index ... done"
 :SKIP_ENDMSG
